@@ -1,0 +1,27 @@
+* {
+  font-family: Roboto;
+  
+}
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body{
+  background: linear-gradient(171.05deg, #040F16 10.94%, #000022 32.9%, rgba(0, 18, 66, 0.86) 86.22%);
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+h1 {
+  color: white;
+  font-size: 48px;
+  font-family: Ubuntu;
+  margin-top: 48px;
+  display: flex;
+  justify-content: center;
+  font-weight: lighter;
+}
