@@ -1,7 +1,15 @@
 import React, { useState, ChangeEvent } from 'react'
 import './styles.css'
 
-const Call = () => {
+interface CallInterface {
+    title: string,
+    description: string,
+    functionality: string,
+    responsable: string,
+    status: string
+}
+
+const Call = ({ title, description, responsable, functionality }: CallInterface) => {
     const [status, setStatus] = useState('');
     const handleChangeStatus = (event: ChangeEvent<HTMLSelectElement>) => {
         setStatus(event.target.value)
@@ -9,8 +17,8 @@ const Call = () => {
     return (
         <div className="call">
             <div className="call-title">
-                <h2>Mascara do campo email &nbsp;</h2>
-                <span>Guilherme Sartori</span>
+                <h2>{title} &nbsp;</h2>
+                <span>{responsable}</span>
             </div>
             <div className="call-info">
                 <svg>
@@ -28,10 +36,10 @@ const Call = () => {
                 </div>
                 <ul>
                     <li>
-                        Login
+                        {functionality}
                     </li>
                     <li>
-                        Máscara de e-mail não funciona
+                        {description}
                     </li>
                 </ul>
             </div>

@@ -1,3 +1,28 @@
 .call-container {
     width: 100%;
 }
+
+.new-call .MuiDialog-paperFullScreen {
+    background: linear-gradient(171.05deg, #040F16 10.94%, #000022 32.9%, rgba(0, 18, 66, 1) 86.22%);
+}
+
+.new-call .form {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    margin: 0 auto;
+}
+
+.new-call .form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-call .form .text-field-custom {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.call-container .call-title {
+    display: flex;
+}

@@ -1,0 +1,16 @@
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 24px;
+}
+
+.button-primary-custom {
+    background: linear-gradient(180deg, #0094C6 0%, #005E7C 100%);
+    border-radius: 16px;
+    height: 80px;
+    width: 340px;
+    border: none;
+    font-size: 24px;
+    color: #FAFAFA;
+    cursor: pointer;
+}

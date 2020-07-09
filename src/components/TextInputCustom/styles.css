@@ -1,0 +1,22 @@
+.text-field-custom label {
+    color: #FFFFFF !important;
+}
+
+.text-field-custom input {
+    color: #FFFFFF !important;
+}
+
+.text-field-custom fieldset {
+    border-color: #FFFFFF !important;
+}
+
+
+.text-field-custom .MuiInputBase-root {
+    border-color: #FFFFFF;
+    border-radius: 16px;
+}
+
+.text-field-custom {
+    margin: 8px auto !important;
+    width: 100%;
+}
