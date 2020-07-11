@@ -29,7 +29,7 @@ const Call = (props: { call: CallInterface }) => {
                 </div>
                 <ul>
                     <li>
-                        ***Funcionalidade***
+                        {props.call.functionality.name}
                     </li>
                     <li>
                         {props.call.description}

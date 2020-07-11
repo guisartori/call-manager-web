@@ -10,7 +10,7 @@ const Routes = () => {
         <BrowserRouter>
             <Route component={Home} path="/" exact />
             <Route component={Projects} path="/projects" />
-            <Route component={Calls} path="/calls/:idProjeto" />
+            <Route component={Calls} path="/calls/:projectId" />
         </BrowserRouter>
     )
 }

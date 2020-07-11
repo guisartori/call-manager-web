@@ -10,6 +10,10 @@ import PrimaryButton from '../../components/PrimaryButton'
 import api from '../../services/api'
 import NewButton from '../../components/NewButton'
 import CallInterface from '../../intefaces/CallInterface'
+import CreatableSelect from 'react-select/creatable';
+import FunctionalityInterfaceForm from '../../intefaces/FunctionalityInterfaceForm'
+import FormNewCallInterface from '../../intefaces/FormNewCallInterface'
+
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & { children?: React.ReactElement },
@@ -21,18 +25,13 @@ const Transition = React.forwardRef(function Transition(
 
 
 const Calls = () => {
-    const params = useParams<{ idProjeto: string }>()
+    const params = useParams<{ projectId: string }>()
     const [open, setOpen] = useState(false);
-    const [formData, setFormData] = useState({
-        title: '',
-        functionality: '',
-        responsable_id: 1,
-        description: '',
-        functionality_id: 1,
-        creator_id: 1,
-        project_id: 3
+    const [formData, setFormData] = useState<FormNewCallInterface>({
+        projectId: Number(params.projectId)
     })
     const [calls, setCalls] = useState<CallInterface[]>()
+    const [functionalities, setFunctionalities] = useState<FunctionalityInterfaceForm[]>()
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -42,11 +41,19 @@ const Calls = () => {
         setOpen(false);
     };
 
+
     useEffect(() => {
-        api.get<CallInterface[]>(`calls/${params.idProjeto}`)
+        api.get<CallInterface[]>(`calls/${params.projectId}`)
             .then(response => {
                 setCalls(response.data)
-                console.log(response.data)
+            })
+            .catch(error => console.log(error))
+    }, [])
+
+    useEffect(() => {
+        api.get<FunctionalityInterfaceForm[]>(`functionalities/${params.projectId}`)
+            .then(response => {
+                setFunctionalities(response.data)
             })
             .catch(error => console.log(error))
     }, [])
@@ -60,11 +67,28 @@ const Calls = () => {
     }
 
     const handleChange = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        console.log(formData)
         setFormData({
             ...formData,
             [event.target.name]: event.target.value
         })
+    }
+
+    const handleSelectChange = (newValue, { action }) => {
+        console.log('teste')
+        if (newValue) {
+            setFormData({
+                ...formData,
+                functionality: {
+                    value: newValue.value,
+                    __isNew__: newValue.__isNew__ ? true : false
+                }
+            })
+        } else {
+            setFormData({
+                ...formData,
+                functionality: undefined
+            })
+        }
     }
 
     return (
@@ -90,18 +114,13 @@ const Calls = () => {
                             name="title"
                             label="Título"
                         />
-                        <TextInputCustom
-                            handleChange={handleChange}
-                            id="functionality"
-                            name="functionality"
-                            label="Funcionalidade"
+
+                        <CreatableSelect
+                            isClearable
+                            onChange={handleSelectChange}
+                            options={functionalities}
                         />
-                        <TextInputCustom
-                            handleChange={handleChange}
-                            id="responsable_id"
-                            name="responsable_id"
-                            label="Responsável"
-                        />
+
                         <TextInputCustom
                             handleChange={handleChange}
                             id="description"
