@@ -1,15 +1,8 @@
 import React, { useState, ChangeEvent } from 'react'
 import './styles.css'
+import CallInterface from '../../intefaces/CallInterface';
 
-interface CallInterface {
-    title: string,
-    description: string,
-    functionality: string,
-    responsable: string,
-    status: string
-}
-
-const Call = ({ title, description, responsable, functionality }: CallInterface) => {
+const Call = (props: { call: CallInterface }) => {
     const [status, setStatus] = useState('');
     const handleChangeStatus = (event: ChangeEvent<HTMLSelectElement>) => {
         setStatus(event.target.value)
@@ -17,8 +10,8 @@ const Call = ({ title, description, responsable, functionality }: CallInterface)
     return (
         <div className="call">
             <div className="call-title">
-                <h2>{title} &nbsp;</h2>
-                <span>{responsable}</span>
+                <h2>{props.call.title} &nbsp;</h2>
+                <span>***nome do responsável***</span>
             </div>
             <div className="call-info">
                 <svg>
@@ -36,10 +29,10 @@ const Call = ({ title, description, responsable, functionality }: CallInterface)
                 </div>
                 <ul>
                     <li>
-                        {functionality}
+                        ***Funcionalidade***
                     </li>
                     <li>
-                        {description}
+                        {props.call.description}
                     </li>
                 </ul>
             </div>

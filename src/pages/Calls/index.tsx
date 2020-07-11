@@ -9,6 +9,7 @@ import TextInputCustom from '../../components/TextInputCustom'
 import PrimaryButton from '../../components/PrimaryButton'
 import api from '../../services/api'
 import NewButton from '../../components/NewButton'
+import CallInterface from '../../intefaces/CallInterface'
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & { children?: React.ReactElement },
@@ -17,16 +18,10 @@ const Transition = React.forwardRef(function Transition(
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-interface CallInterface {
-    title: string,
-    description: string,
-    functionality: string,
-    responsable: string,
-    status: string
-}
+
 
 const Calls = () => {
-    const params = useParams<{ id: string }>()
+    const params = useParams<{ idProjeto: string }>()
     const [open, setOpen] = useState(false);
     const [formData, setFormData] = useState({
         title: '',
@@ -48,15 +43,12 @@ const Calls = () => {
     };
 
     useEffect(() => {
-        // console.log(params.id)
-        api.get<CallInterface[]>('call', {
-            params: {
-                project_id: params.id
-            }
-        }).then(response => {
-            setCalls(response.data)
-            console.log(response.data)
-        })
+        api.get<CallInterface[]>(`calls/${params.idProjeto}`)
+            .then(response => {
+                setCalls(response.data)
+                console.log(response.data)
+            })
+            .catch(error => console.log(error))
     }, [])
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -79,19 +71,13 @@ const Calls = () => {
         <>
             <Menu />
             <div className="call-container">
-                <div className="call-title">
+                <div className="call-container-title">
                     <h1>Chamados</h1>
                     <NewButton onClick={handleClickOpen} />
                 </div>
                 {calls?.map((call, index) => {
                     return (
-                        <Call key={index}
-                            responsable={String(call.responsable)}
-                            functionality={call.functionality}
-                            description={call.description}
-                            title={call.title}
-                            status={call.status}
-                        />)
+                        <Call key={index} call={call} />)
                 })}
             </div>
             <Dialog className="new-call" fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>

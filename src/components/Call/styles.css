@@ -2,8 +2,10 @@
     color: #FAFAFA;
     display: flex;
     width: 85%;
-    margin: 0 auto;
+    padding: 24px 0;
+    margin: 0px auto;
     flex-direction: column;
+    border-bottom: 1px solid #fafafa;
 }
 
 .call span {

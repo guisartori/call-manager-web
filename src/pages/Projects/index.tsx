@@ -4,16 +4,20 @@ import { Add } from '@material-ui/icons'
 import ProjectCard from '../../components/ProjectCard'
 import './styles.css'
 import api from '../../services/api'
-import Project from '../../models/Project';
+import ProjectInterface from '../../intefaces/ProjectInterface';
 
 const Projects = () => {
-    const [ open, setOpen ] = useState(false)
-    const [ projects, setProjects ] = useState<Project[]>()
-    const [ title, setTitle, ] = useState('')
+    const [open, setOpen] = useState(false)
+    const [projects, setProjects] = useState<ProjectInterface[]>()
+    const [title, setTitle,] = useState('')
 
     useEffect(() => {
-        api.get('/project').then(response => setProjects(response.data))
-    },[])
+        api.get('/projects')
+            .then(response => setProjects(response.data))
+            .catch(error => {
+                console.log(error)
+            })
+    }, [])
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -40,18 +44,18 @@ const Projects = () => {
             <Grid xs={12} item>
                 <h1 className="title group">PROJETOS
                     <IconButton className="teste-button" onClick={handleClickOpen} aria-label="save" size="medium">
-                        <Add/>
+                        <Add />
                     </IconButton>
                 </h1>
                 <Container className="container-fluid">
                     <Grid spacing={3} container>
-                        { projects?.map(project => {
+                        {projects?.map(project => {
                             return (
                                 <Grid item xs={12} md={5} lg={5} key={project.id}>
-                                    <ProjectCard project={project}/>
+                                    <ProjectCard project={project} />
                                 </Grid>
                             )
-                        }) }
+                        })}
                     </Grid>
                 </Container>
             </Grid>
@@ -61,9 +65,9 @@ const Projects = () => {
                 </DialogTitle>
                 <form onSubmit={(e) => handleSubmit(e)} action="/project">
                     <Grid className="group">
-                        <TextField onChange={(e) => handleChange(e)} id="title" name="title" label="Nome" variant="outlined" className="text-field-custom"/>
+                        <TextField onChange={(e) => handleChange(e)} id="title" name="title" label="Nome" variant="outlined" className="text-field-custom" />
                         <IconButton type="submit" aria-label="save" size="medium">
-                            <Add/>
+                            <Add />
                         </IconButton>
                     </Grid>
                 </form>
