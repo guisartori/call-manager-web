@@ -17,7 +17,7 @@ const ProjectCard = (props: { project: ProjectInterface }) => {
         <div className="project-card" onClick={() => handleClick(project.id)}>
             <div className="badge">{project.counter_new_calls}</div>
             <h2>{project.title}</h2>
-            <div className="percent" >{project.percentual}%...</div>
+            <div className="percent" style={{ width: project.percentual }}>{project.percentual}%...</div>
         </div>
     )
 }

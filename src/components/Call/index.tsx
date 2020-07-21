@@ -2,11 +2,10 @@ import React, { useState, ChangeEvent } from 'react'
 import './styles.css'
 import CallInterface from '../../intefaces/CallInterface';
 
-const Call = (props: { call: CallInterface }) => {
-    const [status, setStatus] = useState('');
-    const handleChangeStatus = (event: ChangeEvent<HTMLSelectElement>) => {
-        setStatus(event.target.value)
-    }
+const Call = (props: { call: CallInterface, handleChangeStatus: (event: ChangeEvent<HTMLSelectElement>) => void }) => {
+
+
+
     return (
         <div className="call">
             <div className="call-title">
@@ -20,7 +19,7 @@ const Call = (props: { call: CallInterface }) => {
                     <line x1="70%" x2="95%" y1={77} y2={77} />
                 </svg>
                 <div className="status-button">
-                    <select name="statusBtn" id="statusBtn">
+                    <select name="statusBtn" id="statusBtn" onChange={props.handleChangeStatus}>
                         <option value="1">New</option>
                         <option value="2">Doing</option>
                         <option value="3">Done</option>
