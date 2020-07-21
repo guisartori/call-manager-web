@@ -1,0 +1,45 @@
+.project-card {
+    border: 2px solid #FAFAFA;
+    border-radius: 8px;
+    position: relative;
+    width: 400px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.badge-new {
+    position: absolute;
+    right: 24px;
+    top: -20px;
+    font-size: 24px;
+    min-width: 40px;
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 8px; */
+    background: linear-gradient(180deg, #0094C6 0%, #008BBD 27.6%, #001242 100%);
+    z-index: 99;
+    border-radius: 50%;
+}
+
+.project-card h2 {
+    display: flex;
+    align-self: center;
+}
+
+.progress-bar {
+    position: absolute;
+    background: linear-gradient(270deg, #0094C6 -24.18%, #000022 100%);
+    border-radius: 0px 12px 12px 8px;
+    height: 24px;
+    bottom: 0.5px;
+    padding-right: 4px;
+    min-width: 15%;
+    max-width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
