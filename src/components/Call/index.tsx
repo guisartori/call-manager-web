@@ -1,20 +1,15 @@
 import React from 'react'
 import './styles.css'
+import CallInterface from '../../models/CallInterface'
 
-interface CallInterface {
-    call_id: number,
-    call_title: string,
-    call_creator_name: string,
-    functionality_name: string,
-    call_description: string
-}
 
-const Call = (props: CallInterface) => {
+
+const Call = (props: { call: CallInterface }) => {
     return (
         <div className="call">
             <div className="call-title">
-                <h2>{`${props.call_id} - ${props.call_title}`}</h2>
-                <span>{props.call_creator_name}</span>
+                <h2>{`#${props.call.call_id} - ${props.call.call_title}`}</h2>
+                <span>{props.call.call_creator_name}</span>
             </div>
             <div className="call-info">
                 <svg>
@@ -32,10 +27,10 @@ const Call = (props: CallInterface) => {
                 </div>
                 <ul>
                     <li>
-                        {props.functionality_name}
+                        {props.call.functionality_name}
                     </li>
                     <li>
-                        {props.call_description}
+                        {props.call.call_description}
                     </li>
                 </ul>
             </div>

@@ -22,4 +22,13 @@ h1 {
     text-align: center;
     padding-top: 24px;
     text-transform: uppercase;
+    position: relative;
+}
+
+.container {
+    margin: 40px auto;
+    display: flex;
+    max-width: 998px;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }

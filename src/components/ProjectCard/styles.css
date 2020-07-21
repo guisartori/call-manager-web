@@ -8,6 +8,7 @@
     flex-direction: column;
     justify-content: center;
     cursor: pointer;
+    margin: 24px 0;
 }
 
 .badge-new {
@@ -42,4 +43,5 @@
     max-width: 100%;
     display: flex;
     justify-content: flex-end;
+    left: 1px;
 }
