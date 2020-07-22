@@ -20,7 +20,7 @@ const ProjectCard = (props: { project: ProjectCardInterface }) => {
                 {props.project.project_name}
             </h2>
             <div className="progress-bar" style={{ width: `${props.project.percentual}%` }}>
-                {props.project.percentual}%...
+                {Math.floor(props.project.percentual)}%...
             </div>
         </div>
     )

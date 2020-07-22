@@ -29,7 +29,7 @@ const Calls = () => {
             {
                 calls.map((call, index) => {
                     return (
-                        <Call call={call} key={index} />
+                        <Call call={call} key={index} refreshCalls={refreshCalls} />
                     )
                 })
             }

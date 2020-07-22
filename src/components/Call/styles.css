@@ -71,3 +71,26 @@
 .call .call-info ul {
     width: 83%;
 }
+
+.call .call-history {
+    display: flex;
+    flex-direction: column;
+}
+
+.call .call-history h3 {
+    margin-top: 0;
+    padding-left: 8%;
+}
+
+.call .call-history ul {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.call .call-history ul li {
+    padding: 8px;
+}
+
+.call .call-history ul li h4 {
+    margin: 0;
+}
