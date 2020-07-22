@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect } from 'react'
+import React, { ChangeEvent } from 'react'
 import './styles.css'
 import CallInterface from '../../models/CallInterface'
 import CommitInterface from '../../models/CommitInterface'
