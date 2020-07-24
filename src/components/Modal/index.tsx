@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef } from 'react'
+import React, { ReactNode, useRef, useEffect } from 'react'
 import './styles.css'
 
 const Modal = (props: {
@@ -7,6 +7,9 @@ const Modal = (props: {
     close: () => void,
     title: string
 }) => {
+    const fadeOut = () => {
+        console.log('oi')
+    }
     const modalRef = useRef<HTMLDivElement>(null)
 
     const escClicked = (event: KeyboardEvent) => {
@@ -29,7 +32,11 @@ const Modal = (props: {
         setTimeout(props.close, 300)
     }
 
-    if (!props.open) return null
+    //TODO ON SUBMIT FECHAR O MODAL COM ANIMAÇÃO
+
+    if (!props.open) {
+        return null
+    }
     document.addEventListener("keydown", escClicked)
     document.addEventListener("click", mouseScreenClicked)
 

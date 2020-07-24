@@ -33,6 +33,7 @@ export const Input = (props: {
                 defaultValue={defaultValue}
                 ref={inputRef}
                 type="text"
+                autoComplete="off"
                 id={props.name}
                 name={props.name} />
             <span>{error}</span>

@@ -17,10 +17,10 @@
     background: linear-gradient(180deg, #0094C6 0%, #008BBD 27.6%, #001242 100%);
     border-radius: 40px;
     padding: 20px;
-    width: 600px;
-    height: 200px;
+    width: 450px;
+    height: 150px;
     animation: fade-in 300ms;
-    DISPLAY: flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
