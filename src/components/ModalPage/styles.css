@@ -1,0 +1,57 @@
+.modal-page {
+    min-height: 100vh;
+    width: 100vw;
+    animation: fade-modal-page 300ms forwards;
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(171.05deg, #040F16 10.94%, #000022 32.9%, rgba(0, 18, 66, 0.86) 86.22%);
+    background-color: teal;
+}
+
+.close-modal {
+    animation: fade-modal-page-out 300ms forwards
+}
+
+@keyframes fade-modal-page-out {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+@keyframes fade-modal-page {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.form-group .input-block {
+    width: 640px;
+}
+
+.form-group input {
+    height: 56px;
+    padding-left: 16px;
+    font-size: 20px;
+    border-radius: 16px;
+}

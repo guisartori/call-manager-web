@@ -1,0 +1,13 @@
+.btn-primary {
+    border: none;
+    background: linear-gradient(180deg, #0094C6 0%, #005E7C 100%);
+    border-radius: 16px;
+    color: #FAFAFA;
+    width: 180px;
+    height: 60px;
+    font-size: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    align-self: flex-end;
+    transform: translateX(-100px);
+}

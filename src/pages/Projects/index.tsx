@@ -46,7 +46,6 @@ const Projects = () => {
     }
 
     const handleSubmit = async (data: any) => {
-        //TODO VALIDAR COM YUP
         try {
             const schema = Yup.object().shape({
                 title: Yup.string().required("Preencha o campo")

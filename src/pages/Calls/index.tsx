@@ -5,12 +5,16 @@ import ButtonNew from '../../components/ButtonNew'
 import CallInterface from '../../models/CallInterface'
 import api from '../../service'
 import { useParams } from 'react-router-dom'
+import ModalPage from '../../components/ModalPage'
 
 const Calls = () => {
     const [calls, setCalls] = useState<CallInterface[]>([])
     const { projectId } = useParams()
+    const [modalPageOpen, setModalPageOpen] = useState(false)
+    const [classes, setClasses] = useState<string>("")
+
     const handleClick = () => {
-        console.log('clickou em mim')
+        openModal()
     }
 
     const refreshCalls = () => {
@@ -19,20 +23,40 @@ const Calls = () => {
             .catch(err => console.log(err))
     }
 
-    useEffect(refreshCalls, [])
+    useEffect(refreshCalls, [calls])
+
+    const openModal = () => {
+        setClasses("")
+        setModalPageOpen(true)
+    }
+
+    const closeModal = () => {
+        setClasses("close-modal")
+        setTimeout(() => setModalPageOpen(false), 300)
+        refreshCalls()
+    }
+
+    document.addEventListener("keydown", event => {
+        if (event.keyCode === 27 && setModalPageOpen)
+            closeModal()
+    })
 
     return (
         <>
             <h1>Chamados
              <ButtonNew handleClick={handleClick} />
             </h1>
-            {
-                calls.map((call, index) => {
-                    return (
-                        <Call call={call} key={index} refreshCalls={refreshCalls} />
-                    )
-                })
-            }
+            <div className="container">
+
+                {
+                    calls.map((call, index) => {
+                        return (
+                            <Call call={call} key={index} refreshCalls={refreshCalls} />
+                        )
+                    })
+                }
+            </div>
+            <ModalPage classes={String(classes)} open={modalPageOpen} closeModal={closeModal} />
         </>
     )
 }
