@@ -1,12 +1,21 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, useRef, useState } from 'react'
 import './styles.css'
 import CallInterface from '../../models/CallInterface'
 import CommitInterface from '../../models/CommitInterface'
 import api from '../../service'
+import Modal from '../Modal'
+import { Input } from '../Input'
+import { Form } from '@unform/web'
+import { FormHandles } from '@unform/core'
+import * as Yup from 'yup'
+import ButtonSend from '../ButtonSend'
 
 
 
 const Call = (props: { call: CallInterface, refreshCalls: () => void }) => {
+    const formRef = useRef<FormHandles>(null)
+    const [open, setOpen] = useState(false)
+    const [toStatus, setToStatus] = useState("")
 
     const lastStatus = props.call.commits[0]
         ? props.call.commits[0].toStatus
@@ -39,18 +48,48 @@ const Call = (props: { call: CallInterface, refreshCalls: () => void }) => {
     }
 
     const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        const comment = prompt("Escreva aqui o comentário")
-        const data = {
-            comment,
-            callId: props.call.call_id,
-            fromStatus: lastStatus,
-            toStatus: event.target.value
-        }
+        setOpen(true)
+        setToStatus(event.target.value)
+    }
 
-        api.post("/commit", data)
-            .then(response => alert('Novo commit adcionado'))
-            .then(props.refreshCalls)
-            .catch(err => console.log(err))
+    const handleSubmit = async (data: any) => {
+        try {
+            const schema = Yup.object().shape({
+                comment: Yup.string().required("Preencha o campo"),
+            })
+
+            await schema.validate(data, {
+                abortEarly: false
+            })
+
+            const finalData = {
+                comment: data.comment,
+                callId: props.call.call_id,
+                fromStatus: lastStatus,
+                toStatus: toStatus
+            }
+
+            api.post("/commit", finalData)
+                .then(response => alert(response.data.msg))
+                .then(handleClose)
+                .catch(err => console.log(err))
+
+        } catch (errors) {
+            const validationErrors: { [index: string]: any } = {}
+
+            if (errors instanceof Yup.ValidationError) {
+                errors.inner.forEach(error => {
+                    validationErrors[String(error.path)] = String(error.message);
+                })
+
+                formRef.current?.setErrors(validationErrors);
+            }
+
+        }
+    }
+
+    const handleClose = () => {
+        setOpen(false)
     }
 
     return (
@@ -84,6 +123,13 @@ const Call = (props: { call: CallInterface, refreshCalls: () => void }) => {
             </div>
 
             {callHistory(props.call.commits)}
+
+            <Modal open={open} title={toStatus} close={handleClose}>
+                <Form onSubmit={handleSubmit} ref={formRef} className="form-new-project">
+                    <Input name="comment" label="Comentário" />
+                    <ButtonSend />
+                </Form>
+            </Modal>
         </div>
     )
 }

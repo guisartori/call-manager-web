@@ -10,6 +10,7 @@ body {
 }
 
 body {
+    background-color: black;
     background: linear-gradient(171.05deg, #040F16 10.94%, #000022 32.9%, rgba(0, 18, 66, 0.86) 86.22%) fixed;
     font-family: 'Mulish', sans-serif;
     color: #FAFAFA;

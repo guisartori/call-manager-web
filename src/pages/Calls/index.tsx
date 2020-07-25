@@ -30,15 +30,17 @@ const Calls = () => {
         setModalPageOpen(true)
     }
 
-    const closeModal = () => {
+    const closeModal = (refresh: boolean = true) => {
         setClasses("close-modal")
         setTimeout(() => setModalPageOpen(false), 300)
-        refreshCalls()
+        if (refresh)
+            refreshCalls()
     }
 
     document.addEventListener("keydown", event => {
+        // console.log('ue esc')
         if (event.keyCode === 27 && setModalPageOpen)
-            closeModal()
+            closeModal(false)
     })
 
     return (

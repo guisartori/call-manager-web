@@ -18,7 +18,7 @@
     border-radius: 40px;
     padding: 20px;
     width: 450px;
-    height: 150px;
+    height: 175px;
     animation: fade-in 300ms;
     display: flex;
     flex-direction: column;
@@ -29,6 +29,7 @@
     font-size: 32px;
     font-weight: 400;
 }
+
 
 @keyframes fade-in {
     from {

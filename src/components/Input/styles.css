@@ -29,3 +29,10 @@
     color: #ff2e2e;
     font-size: 12px;
 }
+
+.input-block:not(.select) input {
+    height: 56px;
+    padding-left: 16px;
+    font-size: 20px;
+    border-radius: 16px;
+}
