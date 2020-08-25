@@ -1,8 +1,8 @@
-import Axios from 'axios'
+import Axios from "axios";
 
 const api = Axios.create({
-    baseURL: "http://localhost:3333/",
-    timeout: 1000
-})
+    baseURL: "https://call-manager-api.herokuapp.com/",
+    timeout: 1000,
+});
 
-export default api
+export default api;
